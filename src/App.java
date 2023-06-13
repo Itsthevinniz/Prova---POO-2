@@ -91,7 +91,7 @@ public class App {
                     System.out.println(venda);
                     total += venda.getProduto().getPreco() * venda.getQtd();
                     mediav += total;
-                    qtdv ++;
+                    qtdv = qtdv + 1;
                     System.out.println("O valor total é: " + total);
                     
                 }
