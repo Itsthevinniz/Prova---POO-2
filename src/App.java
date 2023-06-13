@@ -81,11 +81,23 @@ public class App {
             LocalDate periodoinicial = LocalDate.parse(datainicial, df);
             LocalDate periodofinal = LocalDate.parse(datafinal, df);
 
+            double total = 0.0;
+            int qtdv = 0;
+            double mediav = 0.0;
+
+
             for (Venda venda : listaVendas) {
-                if(venda.getData().isAfter(periodoinicial) && venda.getData().isBefore(periodofinal)){
+                if(venda.getData().compareTo(periodoinicial) >= 0 && venda.getData().compareTo(periodofinal) < 1){
                     System.out.println(venda);
+                    total += venda.getProduto().getPreco() * venda.getQtd();
+                    mediav += total;
+                    qtdv ++;
+                    System.out.println("O valor total é: " + total);
+                    
                 }
             }
+            double mediavendas = mediav/total;
+            System.out.println("A média total é: " + mediavendas);
         }
         
         if (opcao == 5){
@@ -107,7 +119,7 @@ public class App {
                 System.out.println("Informe quantas unidades foram vendidas.");
                 int qtdVendida = sc.nextInt();
                 Produto produto = novaLista.get(0);
-                Venda venda = new Venda(produto.getNome(), qtdVendida, dt);
+                Venda venda = new Venda(produto, qtdVendida, dt);
                 if(produto.getQtd() < qtdVendida){
                     System.out.println("Quantidade insuficiente no estoque:");
                 }

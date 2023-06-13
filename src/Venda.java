@@ -1,12 +1,15 @@
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 
 public class Venda {
-    private String produto;
+    private Produto produto;
     private int qtd;
     private LocalDate data;
 
-    public Venda(String produto, int qtd, LocalDate data) {
+    DateTimeFormatter df = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+    public Venda(Produto produto, int qtd, LocalDate data) {
         this.produto = produto;
         this.qtd = qtd;
         this.data = data;
@@ -14,13 +17,14 @@ public class Venda {
 
     @Override
     public String toString() {
-        return "Venda: Produto = " + produto + ", Quantidade = " + qtd + ", Data da venda = " + data;
+        return "Venda: Produto = " + produto + ", Quantidade = " + qtd + ", Data da venda = " + data.format(df);
     }
 
-    public String getProduto() {
+
+    public Produto getProduto() {
         return produto;
     }
-    public void setProduto(String produto) {
+    public void setProduto(Produto produto) {
         this.produto = produto;
     }
     public int getQtd() {
